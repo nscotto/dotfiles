@@ -17,12 +17,10 @@ call plug#begin('~/.config/nvim/autoload/plugged')
   Plug 'ryanoasis/vim-devicons'
   " Colors
   Plug 'norcalli/nvim-colorizer.lua'
-  " Better Syntax Support
-  Plug 'sheerun/vim-polyglot'
-  " Auto pairs for '(' '[' '{'
-  Plug 'jiangmiao/auto-pairs'
   " Rainbow parentheses
   Plug 'junegunn/rainbow_parentheses.vim'
+  " Better Syntax Support
+  Plug 'sheerun/vim-polyglot'
   " Don't remove split when closing buffer
   Plug 'qpkorr/vim-bufkill'
   " Sneak motion
@@ -36,29 +34,47 @@ call plug#begin('~/.config/nvim/autoload/plugged')
   Plug 'unblevable/quick-scope'
   " Which key
   Plug 'liuchengxu/vim-which-key'
-  " Project wide find & replace
-  Plug 'ChristianChiarulli/far.vim'
   " Float term
   Plug 'voldikss/vim-floaterm'
+  " Zen mode
+  Plug 'junegunn/goyo.vim'
   " Startify
   Plug 'mhinz/vim-startify'
+  " File explorer
+  Plug 'lambdalisue/fern.vim'
+  Plug 'lambdalisue/nerdfont.vim'
+  Plug 'lambdalisue/fern-renderer-nerdfont.vim'
   " Git integration
   Plug 'mhinz/vim-signify'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rhubarb'
   Plug 'junegunn/gv.vim'
+  " Project wide find & replace
+  Plug 'ChristianChiarulli/far.vim'
   " FZF integration
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
   Plug 'airblade/vim-rooter'
+  " Markdown
+  Plug 'godlygeek/tabular'
+  Plug 'plasticboy/vim-markdown'
   " Code linting
   Plug 'dense-analysis/ale'
-  " Stable version of coc
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  " Snippets with coc
+  " Completion
+  Plug 'ncm2/ncm2'
+  Plug 'roxma/nvim-yarp'
+  Plug 'ncm2/float-preview.nvim'
+  Plug 'ncm2/ncm2-bufword'
+  Plug 'ncm2/ncm2-path'
+  Plug 'ncm2/ncm2-markdown-subscope'
+  Plug 'ncm2/ncm2-pyclang'
+  Plug 'HansPinckaers/ncm2-jedi'
+  Plug 'ncm2/ncm2-ultisnips'
+  Plug 'SirVer/ultisnips'
   Plug 'honza/vim-snippets'
   " Python
   Plug 'jeetsukumaran/vim-pythonsense'
+  Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
   " REPL
   "Plug 'kassio/neoterm'
   Plug 'echasnovski/neoterm', { 'branch': 'bracketed-paste' }

@@ -36,6 +36,7 @@ set clipboard=unnamedplus               " Copy paste between vim and everything 
 set inccommand=nosplit                  " Shows in realtime what changes ex command should make
 set lazyredraw                          " Do not redraw screen in the middle of a macro. Makes them complete faster.
 set termguicolors
+set foldlevelstart=999
 "set autochdir                           " Your working directory will always be the same as your working directory
 
 au! BufWritePost $MYVIMRC source %      " auto source when writing to init.vm alternatively you can run :source $MYVIMRC

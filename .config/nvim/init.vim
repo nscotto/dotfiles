@@ -5,10 +5,12 @@ source $HOME/.config/nvim/vim-plug/plugins.vim
 " Plugins config
 lua require'plug-colorizer'
 source $HOME/.config/nvim/plug-config/ale.vim
-source $HOME/.config/nvim/plug-config/coc.vim
+"source $HOME/.config/nvim/plug-config/coc.vim
 source $HOME/.config/nvim/plug-config/far.vim
+source $HOME/.config/nvim/plug-config/fern.vim
 source $HOME/.config/nvim/plug-config/floaterm.vim
 source $HOME/.config/nvim/plug-config/fzf.vim
+source $HOME/.config/nvim/plug-config/ncm2.vim
 source $HOME/.config/nvim/plug-config/neoterm.vim
 source $HOME/.config/nvim/plug-config/quickscope.vim
 source $HOME/.config/nvim/plug-config/rainbow_parentheses.vim
