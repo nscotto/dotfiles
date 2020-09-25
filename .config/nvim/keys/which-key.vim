@@ -94,7 +94,7 @@ let g:which_key_map.s = {
 
 let g:which_key_map.t = {
       \ 'name' : '+terminal' ,
-      \ 't' : [':FloatermNew --wintype=popup --height=6'        , 'terminal'],
+      \ 't' : [':FloatermNew --height=6'                        , 'terminal'],
       \ 'f' : [':FloatermNew fzf'                               , 'fzf'],
       \ 'g' : [':FloatermNew lazygit'                           , 'git'],
       \ 'p' : [':FloatermNew ipython'                           , 'ipython'],
