@@ -24,17 +24,16 @@ autocmd  FileType which_key set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
 
 " Single mappings
-let g:which_key_map['/'] = [ '<Plug>NERDCommenterToggle'   , 'comment' ]
+let g:which_key_map['/'] = [ ':Commentary'   , 'comment' ]
 let g:which_key_map['e'] = [ ':Fern . -drawer -reveal=!@% -toggle' , 'explorer' ]
-let g:which_key_map['f'] = [ ':Files'                      , 'search files' ]
-let g:which_key_map['h'] = [ '<C-W>s'                      , 'split below']
+let g:which_key_map['s'] = [ '<C-W>s'                      , 'split below']
 let g:which_key_map['S'] = [ ':Startify'                   , 'start screen' ]
 let g:which_key_map['T'] = [ ':Rg'                         , 'search text' ]
 let g:which_key_map['v'] = [ '<C-W>v'                      , 'split right']
 let g:which_key_map['z'] = [ 'Goyo'                        , 'zen' ]
 
 " Far for project  wide search
-let g:which_key_map.F = {
+let g:which_key_map.f = {
       \ 'name' : '+find & replace' ,
       \ 'b' : [':Farr --source=vimgrep'    , 'buffer'],
       \ 'p' : [':Farr --source=rgnvim'     , 'project'],

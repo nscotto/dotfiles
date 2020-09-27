@@ -10,9 +10,10 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 
   " Theme
   Plug 'joshdick/onedark.vim'
-  " Airline
-  Plug 'vim-airline/vim-airline'
-  Plug 'vim-airline/vim-airline-themes'
+  " Status line
+  " Plug 'vim-airline/vim-airline'
+  " Plug 'vim-airline/vim-airline-themes'
+  Plug 'itchyny/lightline.vim'
   " Dev fonts
   Plug 'ryanoasis/vim-devicons'
   " Colors
@@ -21,6 +22,8 @@ call plug#begin('~/.config/nvim/autoload/plugged')
   Plug 'junegunn/rainbow_parentheses.vim'
   " Better Syntax Support
   Plug 'sheerun/vim-polyglot'
+  " Smooth scrolling
+  Plug 'psliwka/vim-smoothie'
   " Don't remove split when closing buffer
   Plug 'qpkorr/vim-bufkill'
   " Sneak motion
@@ -29,7 +32,6 @@ call plug#begin('~/.config/nvim/autoload/plugged')
   Plug 'tpope/vim-surround'
   " Commentary
   Plug 'tpope/vim-commentary'
-  Plug 'preservim/nerdcommenter'
   " Quick Scope
   Plug 'unblevable/quick-scope'
   " Which key
@@ -60,6 +62,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
   Plug 'plasticboy/vim-markdown'
   " Code linting
   Plug 'dense-analysis/ale'
+  Plug 'maximbaz/lightline-ale'
   " Completion
   Plug 'ncm2/ncm2'
   Plug 'roxma/nvim-yarp'

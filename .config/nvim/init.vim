@@ -5,7 +5,7 @@ source $HOME/.config/nvim/vim-plug/plugins.vim
 " Plugins config
 lua require'plug-colorizer'
 source $HOME/.config/nvim/plug-config/ale.vim
-"source $HOME/.config/nvim/plug-config/coc.vim
+source $HOME/.config/nvim/plug-config/lightline.vim
 source $HOME/.config/nvim/plug-config/far.vim
 source $HOME/.config/nvim/plug-config/fern.vim
 source $HOME/.config/nvim/plug-config/floaterm.vim
@@ -21,5 +21,5 @@ source $HOME/.config/nvim/keys/which-key.vim
 " Keys
 source $HOME/.config/nvim/keys/mappings.vim
 " Themes
-source $HOME/.config/nvim/themes/airline.vim
+"source $HOME/.config/nvim/themes/airline.vim
 source $HOME/.config/nvim/themes/onedark.vim

@@ -23,7 +23,10 @@ let g:UltiSnipsJumpBackwardTrigger	= "<c-k>"
 let g:UltiSnipsRemoveSelectModeMappings = 0
 
 " markdown
-let g:vim_markdown_fenced_languages = ['python', 'c', 'cpp']
+let g:vim_markdown_fenced_languages = ['python=python', 'c=c', 'cpp=cpp']
 
 " path to directory where libclang.so can be found
 let g:ncm2_pyclang#library_path = '/usr/lib64/libclang.so.10'
+
+" Use conda environment for python
+let g:ncm2_jedi#environment = $CONDA_PREFIX
