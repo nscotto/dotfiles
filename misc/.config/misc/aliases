@@ -1,6 +1,12 @@
 alias vim="nvim"
 alias v="nvim"
 
+# config
+alias nconf="nvim $VIMRC"
+alias zconf="nvim $ZRC"
+alias zlocal="nvim $ZLOCAL"
+alias zalias="nvim $ALIASES"
+
 # git
 alias ginit="git init"
 alias gadd="git add"
@@ -8,9 +14,13 @@ alias gc="git commit"
 
 # suffix aliases
 alias -s py="nvim"
+alias -s cc="nvim"
+alias -s c="nvim"
+alias -s h="nvim"
+alias -s json="nvim"
+alias -s txt="nvim"
+alias -s md="nvim"
 
 # global aliases (for piped commands)
 alias -g gp="grep"
 
-################################################################################
-alias tvm-activate="source ~/work/tvm_codegen/tvm_setup.sh && conda deactivate && conda activate tvm-build"
