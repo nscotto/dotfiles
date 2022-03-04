@@ -1,4 +1,4 @@
-local user = "sruk"
+local user = "salience"
 require(user .. ".local")
 
 require "user.options"
@@ -10,7 +10,7 @@ require "user.lsp"
 require "user.telescope"
 require "user.treesitter"
 require "user.autopairs"
-require "user.mini"
+-- require "user.mini"
 require "user.comment"
 require "user.gitsigns"
 require "user.nvim-tree"

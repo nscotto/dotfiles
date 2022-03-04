@@ -2,7 +2,7 @@ return {
   settings = {
     python = {
       analysis = {
-        autoSearchPaths = false,
+        autoSearchPaths = true,
         diagnosticMode = "openFilesOnly",
         useLibraryCodeForTypes = true,
         extraPaths = { "python" },
