@@ -1,0 +1,16 @@
+alias vim="nvim"
+alias v="nvim"
+
+# git
+alias ginit="git init"
+alias gadd="git add"
+alias gc="git commit"
+
+# suffix aliases
+alias -s py="nvim"
+
+# global aliases (for piped commands)
+alias -g gp="grep"
+
+################################################################################
+alias tvm-activate="source ~/work/tvm_codegen/tvm_setup.sh && conda deactivate && conda activate tvm-build"
