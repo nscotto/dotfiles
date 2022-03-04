@@ -1,0 +1,109 @@
+################################################################################
+#                                                                              #
+# Environment                                                                  #
+#                                                                              #
+################################################################################
+source "$ZDOTDIR/local/zuser"
+export ZLOCAL="$ZDOTDIR/local/$ZUSER/zshenv"
+source "$ZLOCAL"
+################################################################################
+#                                                                              #
+# Aliases                                                                      #
+#                                                                              #
+################################################################################
+source "$ALIASES"
+################################################################################
+#                                                                              #
+# Options                                                                      #
+#                                                                              #
+################################################################################
+# Turn off all beeps
+unsetopt BEEP
+# Turn off autocomplete beeps
+# unsetopt LIST_BEEP
+bindkey -e  # emacs mode
+################################################################################
+#                                                                              #
+# Completion                                                                   #
+#                                                                              #
+################################################################################
+## menu-style
+zstyle ':completion:*' menu select
+autoload -Uz compinit && compinit
+zstyle ':completion:*' special-dirs true
+# case insensitive
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z-_}={A-Za-z_-}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+# Tab completion colors
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+# add new installed packages into completions
+zstyle ':completion:*' rehash true
+# Use better completion for the kill command
+#zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;34'
+#zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+# use completion cache
+zstyle ':completion::complete:*' use-cache true
+################################################################################
+#                                                                              #
+# Prompt - Minimal                                                             #
+#                                                                              #
+################################################################################
+# PROMPT='%b%F{#0b98de}%~ %f
+# %? %F{#fd9014}%(!.#.>) %f'
+# autoload -Uz vcs_info
+# precmd_vcs_info() { vcs_info }
+# precmd_functions+=( precmd_vcs_info )
+#
+# zstyle ':vcs_info:*' enable git
+# zstyle ':vcs_info:*' check-for-changes true
+# zstyle ':vcs_info:*' stagedstr '%F{yellow}●%f'
+# zstyle ':vcs_info:*' unstagedstr '%F{red}●%f'
+# zstyle ':vcs_info:git:*' formats '[%F{green}%b%f%c%u]'
+# zstyle ':vcs_info:git:*' actionformats '[%F{cyan}%b (%a)%f%c%u]'
+#
+# RPROMPT='$vcs_info_msg_0_'
+
+################################################################################
+#                                                                              #
+# Prompt - Powerlevel10k                                                       #
+#                                                                              #
+################################################################################
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+source "$POWERLEVEL10K/powerlevel10k.zsh-theme"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
+[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
+################################################################################
+#                                                                              #
+# Plugins                                                                      #
+#                                                                              #
+################################################################################
+#auto suggestions
+autosugestions_dir="$ZDOTDIR/plugins/zsh-autosuggestions" 
+autosugestions="$autosugestions_dir/zsh-autosuggestions.zsh" 
+[ ! -f "$autosugestions" ] && \
+  git clone https://github.com/zsh-users/zsh-autosuggestions.git "$autosugestions_dir"
+source "$autosugestions"
+set ZSH_AUTOSUGGEST_USE_ASYNC=true
+#fast syntax highlighting
+syntax_dir="$ZDOTDIR/plugins/fast-syntax-highlighting"
+syntax="$syntax_dir/fast-syntax-highlighting.plugin.zsh"
+[ ! -f "$syntax" ] && \
+  git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git "$syntax_dir"
+source "$syntax"
+# conda completion
+condacomp="$ZDOTDIR/plugins/conda-zsh-completion"
+[ ! -d "$condacomp" ] && \
+  git clone https://github.com/esc/conda-zsh-completion.git "$condacomp"
+fpath+="$condacomp"
+compinit conda
+# fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
