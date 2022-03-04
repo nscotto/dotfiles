@@ -1,6 +1,6 @@
-local user = "salience"
+require "localuser"
+local user = vim.api.nvim_get_var("LOCALUSER")
 require(user .. ".local")
-
 require "user.options"
 require "user.keymaps"
 require "user.plugins"
