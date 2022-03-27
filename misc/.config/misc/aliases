@@ -3,9 +3,16 @@ alias v="nvim"
 
 # config
 alias nconf="nvim $VIMRC"
+alias vconf="nvim $VIMRC"
+alias vrc="nvim $VIMRC"
+alias zrc="nvim $VIMRC"
+
 alias zconf="nvim $ZRC"
+alias zrc="nvim $ZRC"
+
 alias zlocal="nvim $ZLOCAL"
 alias zalias="nvim $ALIASES"
+alias aliases="nvim $ALIASES"
 
 # git
 alias ginit="git init"
@@ -23,4 +30,10 @@ alias -s md="nvim"
 
 # global aliases (for piped commands)
 alias -g gp="grep"
+
+# docker
+alias d="docker"
+alias dc="docker container"
+alias dim="docker image"
+alias dr="docker run"
 
