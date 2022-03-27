@@ -27,9 +27,19 @@ bindkey -e  # emacs mode
 # Completion                                                                   #
 #                                                                              #
 ################################################################################
+declare -A compsources
+compsources=(
+  [_conda]='https://raw.githubusercontent.com/esc/conda-zsh-completion/master/_conda'
+  [_docker]='https://raw.githubusercontent.com/docker/cli/master/contrib/completion/zsh/_docker'
+  [_docker-compose]='https://raw.githubusercontent.com/docker/compose/1.29.2/contrib/completion/zsh/_docker-compose'
+)
+for compsrc comprepo in ${(kv)compsources}; do
+  [ ! -f $ZCOMP/$compsrc ] && curl -L $comprepo -o $ZCOMP/$compsrc
+done
+fpath=($ZCOMP/ $fpath)
 ## menu-style
 zstyle ':completion:*' menu select
-autoload -Uz compinit && compinit
+autoload -Uz compinit && compinit -i
 zstyle ':completion:*' special-dirs true
 # case insensitive
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z-_}={A-Za-z_-}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
@@ -42,6 +52,9 @@ zstyle ':completion:*' rehash true
 #zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 # use completion cache
 zstyle ':completion::complete:*' use-cache true
+# for docker
+zstyle ':completion:*:*:docker:*' option-stacking yes
+zstyle ':completion:*:*:docker-*:*' option-stacking yes
 ################################################################################
 #                                                                              #
 # Prompt - Minimal                                                             #
@@ -87,23 +100,23 @@ source "$POWERLEVEL10K/powerlevel10k.zsh-theme"
 #                                                                              #
 ################################################################################
 #auto suggestions
-autosugestions_dir="$ZDOTDIR/plugins/zsh-autosuggestions" 
+autosugestions_dir="$ZPLUG/zsh-autosuggestions" 
 autosugestions="$autosugestions_dir/zsh-autosuggestions.zsh" 
 [ ! -f "$autosugestions" ] && \
   git clone https://github.com/zsh-users/zsh-autosuggestions.git "$autosugestions_dir"
 source "$autosugestions"
 set ZSH_AUTOSUGGEST_USE_ASYNC=true
 #fast syntax highlighting
-syntax_dir="$ZDOTDIR/plugins/fast-syntax-highlighting"
+syntax_dir="$ZPLUG/fast-syntax-highlighting"
 syntax="$syntax_dir/fast-syntax-highlighting.plugin.zsh"
 [ ! -f "$syntax" ] && \
   git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git "$syntax_dir"
 source "$syntax"
-# conda completion
-condacomp="$ZDOTDIR/plugins/conda-zsh-completion"
-[ ! -d "$condacomp" ] && \
-  git clone https://github.com/esc/conda-zsh-completion.git "$condacomp"
-fpath+="$condacomp"
-compinit conda
+# z command
+zcmd_dir="$ZPLUG/zsh-z"
+zcmd="$zcmd_dir/zsh-z.plugin.zsh"
+[ ! -f "$zcmd" ] && \
+  git clone https://github.com/agkozak/zsh-z.git "$zcmd_dir"
+source "$zcmd"
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
