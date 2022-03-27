@@ -84,6 +84,7 @@ local mappings = {
     "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
     "Buffers",
   },
+  ["d"] = { "<cmd>Neogen<cr>", "Doc comment" },
   ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
   ["w"] = { "<cmd>w!<CR>", "Save" },
   ["q"] = { "<cmd>q!<CR>", "Quit" },
@@ -132,7 +133,7 @@ local mappings = {
     name = "LSP",
     a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
     d = {
-      "<cmd>Telescope lsp_document_diagnostics<cr>",
+      "<cmd>TroubleToggle<cr>",
       "Document Diagnostics",
     },
     w = {
@@ -150,14 +151,17 @@ local mappings = {
       "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>",
       "Prev Diagnostic",
     },
+		n = { "<cmd>AerialToggle<cr>", "Navigation" },
     l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
     q = { "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>", "Quickfix" },
     r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
-    s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
-    S = {
-      "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
-      "Workspace Symbols",
-    },
+    s = { "<cmd>SymbolsOutline<cr>", "Document Symbols Tree" },
+    S = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
+    -- s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
+    -- S = {
+    --   "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
+    --   "Workspace Symbols",
+    -- },
   },
   s = {
     name = "Search",
@@ -180,6 +184,12 @@ local mappings = {
     f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
     h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
     v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
+  },
+  z = {
+    name = "Zen Mode",
+    k = { "<cmd>lua require('zen-mode').toggle({plugins={twilight={enabled=false}}})<cr>", "ZenMode" },
+    j = { "<cmd>Twilight<cr>", "Twilight" },
+    z = { "<cmd>ZenMode<cr>", "ZenMode" },
   },
 }
 

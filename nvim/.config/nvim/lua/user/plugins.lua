@@ -58,7 +58,9 @@ return packer.startup(function(use)
   use "goolord/alpha-nvim"
   use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
   use "folke/which-key.nvim"
-  use 'echasnovski/mini.nvim'
+  use "echasnovski/mini.nvim"
+  use "folke/twilight.nvim"
+  use "folke/zen-mode.nvim"
 
   -- Colorschemes
   -- use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
@@ -81,6 +83,9 @@ return packer.startup(function(use)
   use "williamboman/nvim-lsp-installer" -- simple to use language server installer
   use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
   use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
+  use "simrat39/symbols-outline.nvim"
+  use "stevearc/aerial.nvim"
+  use "folke/trouble.nvim"
 
   -- Telescope
   use "nvim-telescope/telescope.nvim"
@@ -91,9 +96,19 @@ return packer.startup(function(use)
     run = ":TSUpdate",
   }
   use "JoosepAlviste/nvim-ts-context-commentstring"
+  use "romgrk/nvim-treesitter-context"
+  use "nvim-treesitter/playground"
+  use "danymat/neogen"
 
   -- Git
   use "lewis6991/gitsigns.nvim"
+
+  -- Org
+  use "nvim-neorg/neorg"
+  use "jubnzv/mdeval.nvim"
+
+  -- Docker
+  use "jamestthompson3/nvim-remote-containers"
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

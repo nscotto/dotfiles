@@ -112,8 +112,8 @@ cmp.setup {
   sources = {
     { name = "nvim_lsp" },
     { name = "luasnip" },
-    { name = "buffer", keyword_length = 3 },
     { name = "path" },
+    { name = "buffer", keyword_length = 4 },
   },
   confirm_opts = {
     behavior = cmp.ConfirmBehavior.Replace,
