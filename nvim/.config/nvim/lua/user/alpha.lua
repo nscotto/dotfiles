@@ -4,14 +4,34 @@ if not status_ok then
 end
 
 local dashboard = require("alpha.themes.dashboard")
+-- dashboard.section.header.val = {
+-- 	[[                               __                ]],
+-- 	[[  ___     ___    ___   __  __ /\_\    ___ ___    ]],
+-- 	[[ / _ `\  / __`\ / __`\/\ \/\ \\/\ \  / __` __`\  ]],
+-- 	[[/\ \/\ \/\  __//\ \_\ \ \ \_/ |\ \ \/\ \/\ \/\ \ ]],
+-- 	[[\ \_\ \_\ \____\ \____/\ \___/  \ \_\ \_\ \_\ \_\]],
+-- 	[[ \/_/\/_/\/____/\/___/  \/__/    \/_/\/_/\/_/\/_/]],
+-- }
+
+-- local function rainbow_header(path)
+-- 	local handle = io.popen('cat '..path..'| lolcat -F 0.3')
+-- 	local header = handle:read("*a")
+-- 	handle:close()
+-- 	return header
+-- end
+-- local header_path = os.getenv('HOME') .. '/.config/nvim/static/neovim.cat'
+-- dashboard.section.header.val = rainbow_header(header_path)
 dashboard.section.header.val = {
-	[[                               __                ]],
-	[[  ___     ___    ___   __  __ /\_\    ___ ___    ]],
-	[[ / _ `\  / __`\ / __`\/\ \/\ \\/\ \  / __` __`\  ]],
-	[[/\ \/\ \/\  __//\ \_\ \ \ \_/ |\ \ \/\ \/\ \/\ \ ]],
-	[[\ \_\ \_\ \____\ \____/\ \___/  \ \_\ \_\ \_\ \_\]],
-	[[ \/_/\/_/\/____/\/___/  \/__/    \/_/\/_/\/_/\/_/]],
+  [[                                                                   ]],
+  [[      ████ ██████           █████      ██                    ]],
+  [[     ███████████             █████                            ]],
+  [[     █████████ ███████████████████ ███   ███████████  ]],
+  [[    █████████  ███    █████████████ █████ ██████████████  ]],
+  [[   █████████ ██████████ █████████ █████ █████ ████ █████  ]],
+  [[ ███████████ ███    ███ █████████ █████ █████ ████ █████ ]],
+  [[██████  █████████████████████ ████ █████ █████ ████ ██████]],
 }
+
 dashboard.section.buttons.val = {
 	dashboard.button("f", "  Find file", ":Telescope find_files <CR>"),
 	dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),

@@ -84,8 +84,9 @@ local mappings = {
     "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
     "Buffers",
   },
-  ["d"] = { "<cmd>Neogen<cr>", "Doc comment" },
+  ["d"] = { "<cmd>Neogen<cr>", "Doc Comment" },
   ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
+  ["E"] = { "<cmd>Telescope file_browser<cr>", "Telescope Explorer" },
   ["w"] = { "<cmd>w!<CR>", "Save" },
   ["q"] = { "<cmd>q!<CR>", "Quit" },
   ["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
@@ -108,7 +109,7 @@ local mappings = {
 
   g = {
     name = "Git",
-    g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
+    g = { "<cmd>:LazyGit<CR>", "Lazygit" },
     j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
     k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
     l = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame" },
@@ -176,11 +177,19 @@ local mappings = {
   },
 
   t = {
+    name = "Tabs",
+    -- n = { "<cmd>lua _NODE_TOGGLE()<cr>", "Node" },
+    t = { "<cmd>tabnew %<cr><cmd>Alpha<cr>", "New Tab" },
+    c = { "<cmd>tabclose<cr>", "Close Tab" },
+    o = { ":tabnew ", "Open File in Tab" },
+  },
+  T = {
     name = "Terminal",
     -- n = { "<cmd>lua _NODE_TOGGLE()<cr>", "Node" },
     u = { "<cmd>lua _NCDU_TOGGLE()<cr>", "NCDU" },
     t = { "<cmd>lua _HTOP_TOGGLE()<cr>", "Htop" },
     p = { "<cmd>lua _PYTHON_TOGGLE()<cr>", "Python" },
+    r = { "<cmd>lua _RANGER_TOGGLE()<cr>", "Ranger" },
     f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
     h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
     v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },

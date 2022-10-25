@@ -26,13 +26,23 @@ lsp_installer.on_server_ready(function(server)
     opts = vim.tbl_deep_extend("force", pyright_opts, opts)
   end
 
-  if server.name == "ccls" then
-    local ccls_opts = require("user.lsp.settings.ccls")
-    opts = vim.tbl_deep_extend("force", ccls_opts, opts)
+  -- if server.name == "ccls" then
+  --   local ccls_opts = require("user.lsp.settings.ccls")
+  --   opts = vim.tbl_deep_extend("force", ccls_opts, opts)
+  -- end
+
+  if server.name == "clangd" then
+    local clangd_opts = require("user.lsp.settings.clangd")
+    opts = vim.tbl_deep_extend("force", clangd_opts, opts)
   end
 
   if server.name == "gopls" then
     local gopls_opts = require("user.lsp.settings.gopls")
+    opts = vim.tbl_deep_extend("force", gopls_opts, opts)
+  end
+
+  if server.name == "eslint" then
+    local gopls_opts = require("user.lsp.settings.eslint")
     opts = vim.tbl_deep_extend("force", gopls_opts, opts)
   end
 

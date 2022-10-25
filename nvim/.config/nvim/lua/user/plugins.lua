@@ -49,18 +49,23 @@ return packer.startup(function(use)
   use "kyazdani42/nvim-web-devicons"
   use "kyazdani42/nvim-tree.lua"
   use "akinsho/bufferline.nvim"
+  use "tiagovla/scope.nvim"
   use "moll/vim-bbye"
   use "nvim-lualine/lualine.nvim"
   use "akinsho/toggleterm.nvim"
   use "ahmedkhalf/project.nvim"
   use "lewis6991/impatient.nvim"
   use "lukas-reineke/indent-blankline.nvim"
-  use "goolord/alpha-nvim"
+  use "goolord/alpha-nvim" -- dashboard
+  use "glepnir/dashboard-nvim" -- dashboard
   use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
   use "folke/which-key.nvim"
-  use "echasnovski/mini.nvim"
+  use "kylechui/nvim-surround"
   use "folke/twilight.nvim"
   use "folke/zen-mode.nvim"
+  -- use "mrjones2014/smart-splits.nvim"  -- 0.7 ?
+  use "mrjones2014/smart-splits.nvim"
+
 
   -- Colorschemes
   -- use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
@@ -86,15 +91,18 @@ return packer.startup(function(use)
   use "simrat39/symbols-outline.nvim"
   use "stevearc/aerial.nvim"
   use "folke/trouble.nvim"
+  use "jose-elias-alvarez/nvim-lsp-ts-utils"
 
   -- Telescope
   use "nvim-telescope/telescope.nvim"
+  use "nvim-telescope/telescope-file-browser.nvim"
 
   -- Treesitter
   use {
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
   }
+
   use "JoosepAlviste/nvim-ts-context-commentstring"
   use "romgrk/nvim-treesitter-context"
   use "nvim-treesitter/playground"
@@ -102,6 +110,7 @@ return packer.startup(function(use)
 
   -- Git
   use "lewis6991/gitsigns.nvim"
+  use "kdheepak/lazygit.nvim"
 
   -- Org
   use "nvim-neorg/neorg"
@@ -109,6 +118,8 @@ return packer.startup(function(use)
 
   -- Docker
   use "jamestthompson3/nvim-remote-containers"
+
+
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

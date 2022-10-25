@@ -6,3 +6,4 @@ catch /^Vim\%((\a\+)\)\=:E185/
   set background=dark
 endtry
 ]]
+vim.api.nvim_set_hl(0, "WinSeparator", { bg = "None" })

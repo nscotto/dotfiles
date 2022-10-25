@@ -4,7 +4,6 @@ vim.cmd [[
     autocmd FileType qf,help,man,lspinfo nnoremap <silent> <buffer> q :close<CR> 
     autocmd TextYankPost * silent!lua require('vim.highlight').on_yank({higroup = 'Visual', timeout = 200}) 
     autocmd BufWinEnter * :set formatoptions-=cro
-    autocm BufWinEnter *.inc :set ft=cpp
     autocmd FileType qf set nobuflisted
   augroup end
 
@@ -29,6 +28,14 @@ vim.cmd [[
     autocmd!
     autocmd User AlphaReady set showtabline=0 | autocmd BufUnload <buffer> set showtabline=2
   augroup end
+
+  augroup _cpp
+    autocmd!
+    autocmd BufWinEnter *.inc :setf cpp
+    " autocmd BufWinEnter *.cc :setf cpp
+    " autocmd BufWinEnter *.h :setf cpp
+    autocmd FileType cpp setlocal matchpairs+=<:>
+  augroup end
 ]]
 
 -- Autoformat
@@ -36,3 +43,8 @@ vim.cmd [[
 --   autocmd!
 --   autocmd BufWritePre * lua vim.lsp.buf.formatting()
 -- augroup end
+--[[ vim.api.nvim_create_augroup("bufcheck", { clear = true }) ]]
+--[[ vim.api.nvim_create_autocmd("FileType", { ]]
+--[[     pattern = { "cpp" }, ]]
+--[[     command = "setlocal matchpairs+=<:>", ]]
+--[[ }) ]]

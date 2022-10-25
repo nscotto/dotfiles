@@ -38,6 +38,7 @@ set.guifont = "monospace:h17"               -- the font used in graphical neovim
 set.foldlevel = 99
 set.foldmethod = "expr"
 set.foldexpr = "nvim_treesitter#foldexpr()"
+set.laststatus = 3
 
 set.shortmess:append "c"
 
