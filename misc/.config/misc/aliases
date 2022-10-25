@@ -1,5 +1,6 @@
 alias vim="nvim"
 alias v="nvim"
+alias r=". $(which ranger)"
 
 # config
 alias nconf="nvim $VIMRC"
@@ -15,9 +16,11 @@ alias zalias="nvim $ALIASES"
 alias aliases="nvim $ALIASES"
 
 # git
+alias gg="lazygit"
 alias ginit="git init"
 alias gadd="git add"
 alias gc="git commit"
+alias gs="git status"
 
 # suffix aliases
 alias -s py="nvim"
