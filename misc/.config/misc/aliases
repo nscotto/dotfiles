@@ -1,6 +1,7 @@
+alias nvim="PATH=/opt/homebrew/bin:$PATH nvim"
 alias vim="nvim"
 alias v="nvim"
-alias r=". $(which ranger)"
+alias r="ranger"
 
 # config
 alias nconf="nvim $VIMRC"
@@ -19,8 +20,23 @@ alias aliases="nvim $ALIASES"
 alias gg="lazygit"
 alias ginit="git init"
 alias gadd="git add"
+alias ga="git add"
+alias gau="git add -u"
 alias gc="git commit"
+alias gca="git commit --allow-empty"
 alias gs="git status"
+alias grc="git rebase --continue"
+alias gra="git rebase --abort"
+alias grs="git rebase --skip"
+
+alias gpl="gh pr list"
+alias gps="gh pr status"
+
+# python
+alias ip="ipython"
+alias p="python"
+alias ca="conda activate"
+alias cda="conda deactivate"
 
 # suffix aliases
 alias -s py="nvim"
@@ -35,8 +51,8 @@ alias -s md="nvim"
 alias -g gp="grep"
 
 # docker
+alias ld="lazydocker"
 alias d="docker"
 alias dc="docker container"
 alias dim="docker image"
 alias dr="docker run"
-

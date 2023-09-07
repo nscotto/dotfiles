@@ -120,3 +120,7 @@ zcmd="$zcmd_dir/zsh-z.plugin.zsh"
 source "$zcmd"
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+### WEB LLM
+source $(brew --prefix)/opt/chruby/share/chruby/chruby.sh
+source $(brew --prefix)/opt/chruby/share/chruby/auto.sh
