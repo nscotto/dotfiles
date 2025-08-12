@@ -1,0 +1,17 @@
+alias v="nvim"
+alias r="ranger"
+
+alias lg="lazygit"
+alias gg="lazygit"
+alias gs="git status"
+alias gc="git commit"
+alias gca="git commit --amend"
+
+alias ca="conda activate"
+alias ci="conda install"
+alias cda="conda deactivate"
+
+alias p="ipython"
+alias py="python"
+
+alias jp="jupyter lab --no-browser"
