@@ -1,3 +1,8 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 ################################################################################
 #                                                                              #
 # Environment                                                                  #
@@ -33,16 +38,50 @@ setopt EXTENDED_HISTORY
 # Completion                                                                   #
 #                                                                              #
 ################################################################################
-declare -A compsources
-compsources=(
-  [_conda]='https://raw.githubusercontent.com/esc/conda-zsh-completion/master/_conda'
-  [_docker]='https://raw.githubusercontent.com/docker/cli/master/contrib/completion/zsh/_docker'
-  [_docker-compose]='https://raw.githubusercontent.com/docker/compose/1.29.2/contrib/completion/zsh/_docker-compose'
-)
-for compsrc comprepo in ${(kv)compsources}; do
-  [ ! -f $ZCOMP/$compsrc ] && curl -L $comprepo -o $ZCOMP/$compsrc
-done
-fpath=($ZCOMP/ $fpath)
+# declare -A compsources
+# compsources=(
+  # [_conda]='https://raw.githubusercontent.com/esc/conda-zsh-completion/master/_conda'
+  # [_docker]='https://raw.githubusercontent.com/docker/cli/master/contrib/completion/zsh/_docker'
+  # [_docker-compose]='https://raw.githubusercontent.com/docker/compose/1.29.2/contrib/completion/zsh/_docker-compose'
+# )
+# for compsrc comprepo in ${(kv)compsources}; do
+  # [ ! -f $ZCOMP/$compsrc ] && curl -L $comprepo -o $ZCOMP/$compsrc
+# done
+# fpath=($ZCOMP/ $fpath)
+
+# Define completion directory (with XDG fallback)
+: ${ZCOMP:=${XDG_DATA_HOME:-$HOME/.local/share}/zsh/completions}
+
+# Create completion directory if needed
+if [[ ! -d "$ZCOMP" ]]; then
+  mkdir -p "$ZCOMP" || {
+    echo "Failed to create completion directory: $ZCOMP" >&2
+    return 1
+  }
+fi
+
+# Docker completion (prefer native generation)
+if [[ ! -f "$ZCOMP/_docker" ]]; then
+  if command -v docker &>/dev/null; then
+    echo "Generating Docker completions..."
+    mkdir -p "$ZCOMP/_docker.tmp"
+    if docker completion zsh > "$ZCOMP/_docker.tmp/_docker" 2>/dev/null; then
+      mv "$ZCOMP/_docker.tmp/_docker" "$ZCOMP/_docker"
+      rmdir "$ZCOMP/_docker.tmp"
+    else
+      echo "Failed to generate Docker completions, will try download..." >&2
+      rm -rf "$ZCOMP/_docker.tmp"
+      # Fall through to download method
+    fi
+  else
+    echo "Docker not installed - completions won't be available" >&2
+    echo "Install Docker first: https://docs.docker.com/get-docker/" >&2
+  fi
+fi
+
+# Add completion directory to fpath if it exists and isn't already there
+[[ -d "$ZCOMP" && ! ${fpath[(Ie)$ZCOMP]} ]] && fpath=("$ZCOMP" $fpath)
+
 ## menu-style
 zstyle ':completion:*' menu select
 autoload -Uz compinit && compinit -i
@@ -89,18 +128,42 @@ zstyle ':completion:*:*:docker-*:*' option-stacking yes
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
+
+# Define Powerlevel10k directory
+POWERLEVEL10K_DIR="${HOME}/.powerlevel10k"
+
+# Check and install Powerlevel10k if not found
+if [[ ! -d "${POWERLEVEL10K_DIR}" ]]; then
+  echo "Powerlevel10k not found. Installing..."
+  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${POWERLEVEL10K_DIR}"
 fi
 
-# source "$POWERLEVEL10K/powerlevel10k.zsh-theme"
-source "$HOME/.powerlevel10k/powerlevel10k.zsh-theme"
+# Source Powerlevel10k
+source "${POWERLEVEL10K_DIR}/powerlevel10k.zsh-theme"
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# Load p10k configuration
+# Try multiple possible locations for the config file
+P10K_CONFIG_FILES=(
+  ~/.p10k.zsh
+  ~/.config/zsh/.p10k.zsh
+)
 
-# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
-[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
+for config_file in "${P10K_CONFIG_FILES[@]}"; do
+  if [[ -f "${config_file}" ]]; then
+    source "${config_file}"
+    break
+  fi
+done
+
+# # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# 
+# # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
+# [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
+
 ################################################################################
 #                                                                              #
 # Plugins                                                                      #
@@ -125,9 +188,53 @@ zcmd="$zcmd_dir/zsh-z.plugin.zsh"
 [ ! -f "$zcmd" ] && \
   git clone https://github.com/agkozak/zsh-z.git "$zcmd_dir"
 source "$zcmd"
-# fzf
-path+=("$HOME/.bin/fzf/bin")
-path+=("$ZDOTDIR/fzf-zsh-plugin/bin/")
-source "$ZDOTDIR/fzf-zsh-plugin/fzf-zsh-plugin.plugin.zsh"
-# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# ===== FZF Auto-Setup =====
+export FZF_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/fzf"
+export FZF_PLUGIN_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/fzf-zsh-plugin"
+
+# 1. Install FZF if missing
+if ! command -v fzf &>/dev/null; then
+  if [[ ! -d "$FZF_DIR" ]]; then
+    echo "Installing fzf..."
+    git clone --depth 1 https://github.com/junegunn/fzf.git "$FZF_DIR"
+    "$FZF_DIR/install" --bin --no-update-rc --no-bash --no-fish
+  fi
+  path=("$FZF_DIR/bin" $path)
+fi
+
+# 2. Ensure .fzf/shell exists with key files
+if [[ ! -f ~/.fzf/shell/key-bindings.zsh ]]; then
+  mkdir -p ~/.fzf/shell
+
+  # Try copying from system locations first
+  local system_files=(
+    "/usr/share/doc/fzf/examples/key-bindings.zsh"
+    "/usr/share/doc/fzf/examples/completion.zsh"
+  )
+
+  for file in $system_files; do
+    if [[ -f $file ]]; then
+      cp "$file" ~/.fzf/shell/
+    elif [[ -d "$FZF_DIR" ]]; then
+      # Fallback to local install files
+      cp "$FZF_DIR/shell/${file:t}" ~/.fzf/shell/ 2>/dev/null || :
+    fi
+  done
+fi
+
+# 3. Source FZF core files
+[[ -f ~/.fzf/shell/key-bindings.zsh ]] && source ~/.fzf/shell/key-bindings.zsh
+[[ -f ~/.fzf/shell/completion.zsh ]] && source ~/.fzf/shell/completion.zsh
+
+# 4. Install and source fzf-zsh-plugin if wanted
+if [[ ! -d "$FZF_PLUGIN_DIR" ]]; then
+  echo "Installing fzf-zsh-plugin..."
+  git clone --depth 1 https://github.com/unixorn/fzf-zsh-plugin.git "$FZF_PLUGIN_DIR"
+fi
+
+[[ -f "$FZF_PLUGIN_DIR/fzf-zsh-plugin.plugin.zsh" ]] && \
+  source "$FZF_PLUGIN_DIR/fzf-zsh-plugin.plugin.zsh"
+
+# Clean up PATH
+typeset -U path
