@@ -13,4 +13,22 @@ return {
     ft = { "go", "gomod" },
     build = ':lua require("go.install").update_all()', -- if you need to install/update all binaries
   },
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        clangd = {
+          cmd = {
+            "clangd",
+            "--background-index",
+            "--compile-commands-dir=.",
+            "--fallback-style=file",
+          },
+          init_options = {
+            fallbackFlags = { "-std=gnu11" },
+          },
+        },
+      },
+    },
+  },
 }
