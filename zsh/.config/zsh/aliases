@@ -1,5 +1,6 @@
 alias v="nvim"
 alias r="ranger"
+alias yy="yazi"
 
 alias lg="lazygit"
 alias gg="lazygit"
@@ -15,3 +16,5 @@ alias p="ipython"
 alias py="python"
 
 alias jp="jupyter lab --no-browser"
+
+alias o="open"
